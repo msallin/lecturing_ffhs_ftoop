@@ -28,10 +28,10 @@ class MailpieceSlideDeterminatorTest {
     // It gets worse if we need special cases for barcodes as well.
     // We can solve this problem with a builder pattern!
     // Task: Create a mailpieceBuilder.
-    // When we call "new mailpieceBuilder().build();" this must return what getTestMailpiece now returns.
+    // When we call "new MailpieceBuilder().build();" this must return what getTestMailpiece now returns.
     // We can overwrite certain values from the default case using the builder methods.
     // Make this test green by replace the getTestMailpiece call with the following
-    // new mailpieceBuilder().isLetter().build();
+    // new MailpieceBuilder().setIsLetter().build();
     // Then, create a new test to cover the remaining branch in the MailpieceSlideDeterminator class.
     @org.junit.jupiter.api.Test
     void determine_shouldReturnCorrectSlide_WhenLetterAndDefaultCase() {
