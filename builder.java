@@ -73,6 +73,7 @@ class MailpieceSlideDeterminator {
     }
 }
 
+
 class Mailpiece {
     private String Identifier;
 
@@ -94,9 +95,7 @@ class Mailpiece {
         return barcodes;
     }
 
-    public boolean isLetter() {
-        return isLetter;
-    }
+    public boolean isLetter() { return isLetter; }
 }
 
 class Barcode {
@@ -108,11 +107,7 @@ class Barcode {
         this.type = type;
     }
 
-    public String getValue() {
-        return value;
-    }
+    public String getValue() { return value; }
 
-    public String getType() {
-        return type;
-    }
+    public String getType() { return type; }
 }
