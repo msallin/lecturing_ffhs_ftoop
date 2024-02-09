@@ -1,3 +1,5 @@
+package ffhs.lecturing.jpl.concurrency;
+
 import static java.lang.System.out;
 
 class Example {

@@ -3,10 +3,10 @@
 // For some commands you should also measure and log the execution duration.
 // Stopwatch and Logger are given by a framework/library.
 
-package lecturing.decorator.solution;
+package ffhs.lecturing.jpl.designpatterns.solution;
 
 
-class Program {
+class Main2 {
 
     public static void main(String[] args) {
         ICommand command1 = new DurationDecorator(new LoggerDecorator(new CreateUserCommand("test", "test1234")));
@@ -23,14 +23,14 @@ final class Stopwatch {
     public static long duration() { return 0; }
 
     public static void start() { }
-    
+
     public static void stop() { }
 }
 
 final class Logger {
     public Logger() { }
 
-    public static void log(String message) { 
+    public static void log(String message) {
         System.out.println(message);
     }
 }

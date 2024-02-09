@@ -1,9 +1,9 @@
-// You have a program which parses a CSV file which contains users and creates them in a database.
+package ffhs.lecturing.jpl.designpatterns;// You have a program which parses a CSV file which contains users and creates them in a database.
 // Change the program to support also other file formats.
 
 import java.util.ArrayList;
 
-class Program {
+class Main3 {
 
     public static void main(String[] args) {
         UserImporter userImporter = new UserImporter("pathToFile");

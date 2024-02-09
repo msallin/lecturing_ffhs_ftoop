@@ -1,3 +1,5 @@
+package ffhs.lecturing.jpl.concurrency;
+
 import java.math.BigInteger;
 
 // Is this code thread-safe? Why/Why not? How to fix, if necessary?
@@ -53,7 +55,7 @@ class Counter {
     public void incrementCounter() {
         currentValue += 1;
     }
-    
+
     public int getCounter() {
         return currentValue;
     }

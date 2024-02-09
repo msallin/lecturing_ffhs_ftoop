@@ -1,11 +1,11 @@
 // You have a programm which parses a CSV file which contains users and creates them in a database.
 // Change the program to support also other file formats.
 
-package lecturing.templatemethod.exercise;
+package ffhs.lecturing.jpl.designpatterns.solution;
 
 import java.util.ArrayList;
 
-class Program {
+class Main3 {
 
     public static void main(String[] args) {
         new CsvUserImporter("pathToFile").execute();
@@ -25,7 +25,7 @@ abstract class UserImporter {
     }
 
     public void execute() {
-        ArrayList<User> users = parseFile(); 
+        ArrayList<User> users = parseFile();
 
         for (User user : users) {
             // Imagine now that every user is imported into a database

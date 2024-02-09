@@ -1,4 +1,4 @@
-package org.example;
+package ffhs.lecturing.jpl.designpatterns.solution;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -2,22 +2,22 @@
 // To do this, you must not touch the CreateUserAccountCommand. However, the FancyPasswordGeneratorFromLibrary class
 // is from a library and the interface IPasswordGenerator isn't implemented.
 
-package lecturing.adapter.exercise;
+package ffhs.lecturing.jpl.designpatterns;
 
-class Program {
+class Main1 {
     public static void main(String[] args) {
         CreateUserAccountCommand command = new CreateUserAccountCommand(new SimplePasswordGenerator());
         command.execute();
     }
 }
 
-// ------------ Part of a library ------------ 
+// ------------ Part of a library ------------
 class FancyPasswordGeneratorFromLibrary {
     public String createPassword() {
         return "";
     }
 }
-// ------------------------------------------- 
+// -------------------------------------------
 
 class CreateUserAccountCommand {
     private IPasswordGenerator generator;

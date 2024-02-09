@@ -1,10 +1,10 @@
-package org.example;
+package ffhs.lecturing.jpl.designpatterns;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.*;
 
 class MailpieceSlideDeterminatorTest {
 
@@ -48,11 +48,10 @@ class MailpieceSlideDeterminatorTest {
     }
 
     private static Mailpiece getTestMailpiece() {
-        Mailpiece mailpiece = new Mailpiece("11111", new ArrayList<Barcode>() {{
+        return new Mailpiece("11111", new ArrayList<>() {{
             new Barcode("QR", "222344822");
             new Barcode("Matrix", "114848");
         }}, false);
-        return mailpiece;
     }
 }
 
@@ -63,7 +62,7 @@ class MailpieceSlideDeterminator {
         } else {
 
             boolean needsSpecialTreatment = mailpiece.getBarcodes().stream()
-                    .anyMatch(barcode -> barcode.getValue().startsWith("10015") && barcode.getType() == "Matrix");
+                    .anyMatch(barcode -> barcode.value().startsWith("10015") && Objects.equals(barcode.type(), "Matrix"));
             if(needsSpecialTreatment) {
                 return 1;
             } else {
@@ -75,11 +74,11 @@ class MailpieceSlideDeterminator {
 
 
 class Mailpiece {
-    private String Identifier;
+    private final String Identifier;
 
-    private List<Barcode> barcodes;
+    private final List<Barcode> barcodes;
 
-    private boolean isLetter;
+    private final boolean isLetter;
 
     Mailpiece(String identifier, List<Barcode> barcodes, boolean isLetter) {
         Identifier = identifier;
@@ -98,16 +97,5 @@ class Mailpiece {
     public boolean isLetter() { return isLetter; }
 }
 
-class Barcode {
-    private String value;
-    private String type;
-
-    Barcode(String value, String type) {
-        this.value = value;
-        this.type = type;
-    }
-
-    public String getValue() { return value; }
-
-    public String getType() { return type; }
+record Barcode(String value, String type) {
 }
