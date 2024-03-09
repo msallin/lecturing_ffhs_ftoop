@@ -1,7 +1,8 @@
 package ffhs.lecturing.jpl.functional.solution;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.function.Function;
 
 class Aggregation {
     public static void main(String[] args) {
@@ -13,71 +14,43 @@ class Aggregation {
 
         QueryEngine queryEngine = new QueryEngine();
 
-        queryEngine.SetAggregatorStrategy(new Sum());
-        int sum = queryEngine.Aggregate(numbers);
+        Function<ArrayList<Integer>, Integer> aggregator = (n) -> {
+            Integer result = 0;
+            for (int i = 0; i < n.size(); i++) {
+                result += n.get(i);
+            }
+            return result;
+        };
 
-        queryEngine.SetAggregatorStrategy(new Average());
-        int avg = queryEngine.Aggregate(numbers);
+        queryEngine.Aggregate(numbers, aggregator);
 
-        queryEngine.SetAggregatorStrategy(new Median());
-        int median = queryEngine.Aggregate(numbers);
+        aggregator = (n) -> {
+            Integer result = 0;
+            for (int i = 0; i < n.size(); i++) {
+                result += n.get(i);
+            }
+            return result / n.size();
+        };
 
-        System.out.println(sum);
-        System.out.println(avg);
-        System.out.println(median);
+
+        queryEngine.Aggregate(numbers, aggregator);
+
+        aggregator = (n) -> {
+            Collections.sort(n);
+            int middle = n.size() / 2;
+            int medianValue = 0;
+            if (n.size() % 2 == 1)
+                medianValue = n.get(middle);
+            else
+                medianValue = (n.get(middle - 1) + n.get(middle)) / 2;
+            return medianValue;
+        };
+        queryEngine.Aggregate(numbers, aggregator);
     }
 }
 
 class QueryEngine {
-    private Aggregator aggregator;
-
-    public void SetAggregatorStrategy(Aggregator aggregator) {
-        this.aggregator = aggregator;
-    }
-
-    public Integer Aggregate(ArrayList<Integer> numbers) {
-        return aggregator.execute(numbers);
-    }
-}
-
-interface Aggregator {
-    Integer execute(ArrayList<Integer> numbers);
-}
-
-class Sum implements Aggregator {
-    @Override
-    public Integer execute(ArrayList<Integer> numbers) {
-        Integer result = 0;
-        for (int i = 0; i < numbers.size(); i++) {
-            result += numbers.get(i);
-        }
-        return result;
-    }
-}
-
-class Average implements Aggregator {
-    @Override
-    public Integer execute(ArrayList<Integer> numbers) {
-        Integer result = 0;
-        for (int i = 0; i < numbers.size(); i++) {
-            result += numbers.get(i);
-        }
-        return result / numbers.size();
-    }
-}
-
-class Median implements Aggregator {
-    @Override
-    public Integer execute(ArrayList<Integer> numbers) {
-        Integer[] numArray = new Integer[numbers.size()];
-        numbers.toArray(numArray);
-        Arrays.sort(numArray);
-        int middle = numArray.length / 2;
-        int medianValue = 0;
-        if (numArray.length % 2 == 1)
-            medianValue = numArray[middle];
-        else
-            medianValue = (numArray[middle-1] + numArray[middle]) / 2;
-        return medianValue;
+    public Integer Aggregate(ArrayList<Integer> numbers, Function<ArrayList<Integer>, Integer> aggregator) {
+        return aggregator.apply(numbers);
     }
 }
